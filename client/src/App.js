@@ -5,6 +5,7 @@ import { PagenotFound } from './Pages/Pagenotfound';
 import { AddTask } from './Pages/AddTask';
 import { TaskList } from './Pages/TaskList';
 import { EditTask } from './Pages/EditTask';
+import { Spinner } from 'react-bootstrap';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path='/edittask/:id' element={<EditTask/>}></Route>
 
 
+      <Route path='/spinner' element={<Spinner/>}></Route>
 
       <Route path='*' element={<PagenotFound/>}></Route>
     </Routes>
