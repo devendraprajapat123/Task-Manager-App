@@ -1,4 +1,4 @@
-import { Alert, Button, Card, Col, Container, Dropdown, Row, Spinner } from "react-bootstrap";
+import { Alert, Button, Card, Col, Container, Dropdown, Row } from "react-bootstrap";
 import { Layout } from "../Component/Layout";
 import { useEffect, useState } from "react";
 import { deletetask, fetchdata, markcompleted } from "../Apiservices/ApiServices";
@@ -21,7 +21,7 @@ export function TaskList() {
     useEffect(() => {
         getdata('all')
     }, [])
-    console.log(data);
+
     return (
         <Layout>
             <Container>
@@ -47,7 +47,7 @@ export function TaskList() {
                 <Row>
 
                     {
-                        loading ?
+                        !loading ?
                             data.map
                                 (
                                     (t) => {
@@ -108,7 +108,7 @@ export function TaskList() {
                                                 </Card>
                                             </Col>
                                         )
-                                    }) : <Spin  tip="Loading" size="large"> </Spin>
+                                    }) : <Spin tip="Loading" size="large"> </Spin>
 
                     }
                 </Row>
