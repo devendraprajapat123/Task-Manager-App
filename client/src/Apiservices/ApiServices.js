@@ -1,5 +1,5 @@
 import axios from 'axios'
-const DB_URL = 'http://localhost:8888'
+const DB_URL = 'https://task-manager-h9qy.onrender.com'
 
 export function tasksave(data) {
     try {
