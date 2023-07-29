@@ -20,9 +20,10 @@ export function AddTask() {
 
     const handlesubmit = async (e) => {
         try {
-            e.preventDefault(); 
+            e.preventDefault();
             await tasksave(data)
             message.success("Add-Task Successfully")
+            console.log("successfull");
             navigate('/tasklist')
 
         } catch (error) {
@@ -68,7 +69,7 @@ export function AddTask() {
                 </Form>
 
             </Container>
-            
+
 
         </Layout>
     )

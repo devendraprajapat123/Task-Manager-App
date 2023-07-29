@@ -4,6 +4,7 @@ import { Heading } from "../Component/Heading";
 import { Layout } from "../Component/Layout";
 
 
+
 export function Home() {
     return (
         <Layout>

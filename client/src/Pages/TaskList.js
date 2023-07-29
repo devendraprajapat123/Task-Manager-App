@@ -13,10 +13,12 @@ export function TaskList() {
         try {
             const response = await fetchdata(url)
             setData(response.data)
+            setLoading(true)
         } catch (error) {
             console.log(error);
         }
     }
+    console.log(data);
 
     useEffect(() => {
         getdata('all')
@@ -47,7 +49,7 @@ export function TaskList() {
                 <Row>
 
                     {
-                        !loading ?
+                        loading ?
                             data.map
                                 (
                                     (t) => {
