@@ -18,7 +18,7 @@ export function TaskList() {
             console.log(error);
         }
     }
-    console.log(data);
+   
 
     useEffect(() => {
         getdata('all')
