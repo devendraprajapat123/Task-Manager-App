@@ -63,7 +63,7 @@ export async function updatetask(req, res) {
     const data = req.body
     const edittask = Taskmodel(data)
     try {
-        const task = await Taskmodel.findByIdAndUpdate({ _id: req.params.id }, edittask)
+        const task = await Taskmodel.findByIdAndUpdate({ _id: req.params.id },{isCompleted:false},edittask)
         res.status(StatusCodes.OK).json(task)
     } catch (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("Updating error")
