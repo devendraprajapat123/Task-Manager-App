@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { deletetask, fetchdata, markcompleted } from "../Apiservices/ApiServices";
 import { Heading } from "../Component/Heading";
 import { Link } from "react-router-dom";
-import { Spin } from "antd";
+import { Spin, message } from "antd";
 
 export function TaskList() {
     const [data, setData] = useState([])
@@ -18,11 +18,13 @@ export function TaskList() {
             console.log(error);
         }
     }
-   
+
 
     useEffect(() => {
         getdata('all')
     }, [])
+
+   
 
     return (
         <Layout>
@@ -84,6 +86,7 @@ export function TaskList() {
 
                                                                 <Button variant="danger" style={{ marginLeft: "9px" }} onClick={async () => {
                                                                     await deletetask(t._id)
+                                                                    message.success("Task Delete  Successfully")
                                                                     getdata('all')
                                                                 }}>Delete</Button>
                                                             </>
@@ -94,6 +97,7 @@ export function TaskList() {
 
                                                                     <Button variant="danger" style={{ marginLeft: "9px" }} onClick={async () => {
                                                                         await deletetask(t._id)
+                                                                        message.success("Task Delete  Successfully")
                                                                         getdata('all')
                                                                     }}>Delete</Button>
                                                                     <Button variant="primary" style={{ marginLeft: "9px" }} onClick={async () => {
