@@ -7,8 +7,7 @@ import Jwt from "jsonwebtoken";
 
 export async function saveregister(req, res) {
     try {
-        const encreptedpassword = bcrypt.hashSync(req.body.password, 12)
-        req.body['password'] = encreptedpassword
+       
         const { name,gender, phone, email, address, answer, password } = req.body
         if (!name) {
             return res.status(StatusCodes.BAD_REQUEST).send({ message: "name is required" })
@@ -62,7 +61,7 @@ export async function login(req, res) {
         if (user.email == email) {
             if (user.password == password) {
                 
-                res.status(StatusCodes.OK).json(token)
+                res.status(StatusCodes.OK).json("login Successfully")
             } else {
                 res.status(StatusCodes.BAD_REQUEST).json({ message: "Password is wrong" })
             }
