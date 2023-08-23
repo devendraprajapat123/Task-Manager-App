@@ -61,7 +61,7 @@ export async function login(req, res) {
         const user = await Registermodel.findOne({ email, password })
         if (user.email == email) {
             if (user.password == password) {
-                const token = Jwt.sign({ userId: user._id }, 'deven123')
+                
                 res.status(StatusCodes.OK).json(token)
             } else {
                 res.status(StatusCodes.BAD_REQUEST).json({ message: "Password is wrong" })
