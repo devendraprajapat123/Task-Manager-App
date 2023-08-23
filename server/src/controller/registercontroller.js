@@ -7,8 +7,8 @@ import Jwt from "jsonwebtoken";
 
 export async function saveregister(req, res) {
     try {
-       
-        const { name,gender, phone, email, address, answer, password } = req.body
+
+        const { name, gender, phone, email, address, answer, password } = req.body
         if (!name) {
             return res.status(StatusCodes.BAD_REQUEST).send({ message: "name is required" })
         }
@@ -33,7 +33,7 @@ export async function saveregister(req, res) {
         }
 
 
-        const data = new Registermodel({ name,gender, phone, email, password, address, answer })
+        const data = new Registermodel({ name, gender, phone, email, password, address, answer })
         const register = await data.save()
         res.status(StatusCodes.CREATED).json(register)
 
@@ -45,32 +45,27 @@ export async function saveregister(req, res) {
 
 
 export async function login(req, res) {
-
     try {
         const { email, password } = req.body
         if (!email) {
-            return res.json({ message: "email is required" })
-
+            return res.send({ error: "Email is Required" })
         }
         if (!password) {
-            return res.json({ message: "password is required" })
-
+            return res.send({ error: "password is Required" })
         }
 
-        const user = await Registermodel.findOne({ email, password })
-        if (user.email == email) {
-            if (user.password == password) {
-                
-                res.status(StatusCodes.OK).json("login Successfully")
-            } else {
-                res.status(StatusCodes.BAD_REQUEST).json({ message: "Password is wrong" })
-            }
+        const user = await RegisterModel.findOne({ email, password })
+        if (user.email == email || user.password == password) {
+            res.status(StatusCodes.OK).json({
+                success
+                    : true, message: "login successfully",
+                user
+            })
         } else {
-            res.status(StatusCodes.BAD_REQUEST).json({ message: "email  is wrong" })
+            res.status(StatusCodes.BAD_REQUEST).send({ success: false, message: "Email or Password invalid" })
         }
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("login error")
-
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ success: false, message: "Login error" })
     }
 
 }
