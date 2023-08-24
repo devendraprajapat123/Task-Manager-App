@@ -11,8 +11,8 @@ taskroutes.delete('/task/:id', taskdelete)
 taskroutes.get('/task/:id', fetchsingletask)
 taskroutes.put('/task/:id', updatetask)
 taskroutes.put('/task/server/:id', updatetaskserver)
-taskroutes.delete('/iscompleted/delete',deletecompleted)
-taskroutes.put('/task/:id/completed',markkiscompleted)
+taskroutes.delete('/iscompleted/delete', deletecompleted)
+taskroutes.put('/task/:id/completed', markkiscompleted)
 
 
 
