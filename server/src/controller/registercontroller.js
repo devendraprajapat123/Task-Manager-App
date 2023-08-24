@@ -1,44 +1,43 @@
-import { StatusCodes } from 'http-status-codes'
-import { Registermodel } from '../Model/Register.js'
-import bcrypt from 'bcrypt'
-import Jwt from "jsonwebtoken";
+import { StatusCodes } from "http-status-codes";
+import { Registermodel } from "../Model/Register.js";
 
 
-
-export async function saveregister(req, res) {
+export async function savedata(req, res) {
     try {
+        const { name, gender, email, phone, password, address, answer } = req.body
 
-        const { name, gender, phone, email, address, answer, password } = req.body
         if (!name) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "name is required" })
+            return res.send({ message: "Name is required" })
         }
         if (!gender) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "name is required" })
-        }
-        if (!phone) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "phone is required" })
+            return res.send({ message: "gender is required" })
         }
         if (!email) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "email is required" })
+            return res.send({ message: "email is required" })
         }
-
-        if (!address) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "address is required" })
-        }
-        if (!answer) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "answer is required" })
+        if (!phone) {
+            return res.send({ message: "phone is required" })
         }
         if (!password) {
-            return res.status(StatusCodes.BAD_REQUEST).send({ message: "answer is required" })
+            return res.send({ message: "password is required" })
+        }
+        if (!address) {
+            return res.send({ message: "address is required" })
+        }
+        if (!answer) {
+            return res.send({ message: "answer is required" })
+        }
+        const exitinguser = await RegisterModel.findOne({ email })
+
+        if (exitinguser) {
+            return res.send({ message: "email already register please login" })
         }
 
 
-        const data = new Registermodel({ name, gender, phone, email, password, address, answer })
-        const register = await data.save()
-        res.status(StatusCodes.CREATED).json(register)
-
+        const data = await new Registermodel({ name, gender, email, phone, password, address, answer }).save()
+        res.status(StatusCodes.CREATED).json({ message: "Register Successfully" })
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(error)
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ success: false, message: "Register error" })
     }
 
 }
@@ -54,12 +53,10 @@ export async function login(req, res) {
             return res.send({ error: "password is Required" })
         }
 
-        const user = await RegisterModel.findOne({ email, password })
+        const user = await Registermodel.findOne({ email, password })
         if (user.email == email || user.password == password) {
             res.status(StatusCodes.OK).json({
-                success
-                    : true, message: "login successfully",
-                user
+                success: true, message: "login successfully", user
             })
         } else {
             res.status(StatusCodes.BAD_REQUEST).send({ success: false, message: "Email or Password invalid" })
