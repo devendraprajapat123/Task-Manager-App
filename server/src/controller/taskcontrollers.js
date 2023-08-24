@@ -102,7 +102,7 @@ export async function updatetaskserver(req, res) {
 
 export async function deletecompleted(req, res) {
     try {
-        const task = await TaskModel.deleteMany({ isCompleted: true })
+        const task = await Taskmodel.deleteMany({ isCompleted: true })
         res.status(StatusCodes.NO_CONTENT).json("Delete Successfully")
     } catch (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("Delete error")
