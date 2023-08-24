@@ -27,7 +27,7 @@ export async function savedata(req, res) {
         if (!answer) {
             return res.send({ message: "answer is required" })
         }
-        const exitinguser = await RegisterModel.findOne({ email })
+        const exitinguser = await Registermodel.findOne({ email })
 
         if (exitinguser) {
             return res.send({ message: "email already register please login" })
