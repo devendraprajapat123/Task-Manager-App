@@ -63,7 +63,7 @@ export async function updatetask(req, res) {
     const data = req.body
     const edittask = Taskmodel(data)
     try {
-        const task = await Taskmodel.findByIdAndUpdate({ _id: req.params.id },{isCompleted:false},edittask)
+        const task = await Taskmodel.findByIdAndUpdate({ _id: req.params.id }, { isCompleted: false }, edittask)
         res.status(StatusCodes.OK).json(task)
     } catch (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("Updating error")
@@ -82,7 +82,7 @@ export async function markkiscompleted(req, res) {
 
     }
 
-} 
+}
 
 
 
@@ -98,3 +98,14 @@ export async function updatetaskserver(req, res) {
 
 }
 
+
+
+export async function deletecompleted(req, res) {
+    try {
+        const task = await TaskModel.deleteMany({ isCompleted: true })
+        res.status(StatusCodes.NO_CONTENT).json("Delete Successfully")
+    } catch (error) {
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json("Delete error")
+    }
+
+}
