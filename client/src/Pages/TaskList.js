@@ -1,7 +1,7 @@
 import { Alert, Button, Card, Col, Container, Dropdown, Row } from "react-bootstrap";
 import { Layout } from "../Component/Layout";
 import { useEffect, useState } from "react";
-import { deletetask, fetchdata, markcompleted } from "../Apiservices/ApiServices";
+import { clearcompletedtask, deletetask, fetchdata, markcompleted } from "../Apiservices/ApiServices";
 import { Heading } from "../Component/Heading";
 import { Link } from "react-router-dom";
 import { Spin, message } from "antd";
@@ -9,6 +9,7 @@ import { Spin, message } from "antd";
 export function TaskList() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [completed, setCompleted] = useState(false)
     const getdata = async (url) => {
         try {
             const response = await fetchdata(url)
@@ -17,6 +18,11 @@ export function TaskList() {
         } catch (error) {
             console.log(error);
         }
+        if (url == 'Completed') {
+            setCompleted(true)
+        } else {
+            setCompleted(false)
+        }
     }
 
 
@@ -24,7 +30,7 @@ export function TaskList() {
         getdata('all')
     }, [])
 
-   
+
 
     return (
         <Layout>
@@ -118,6 +124,16 @@ export function TaskList() {
 
                     }
                 </Row>
+                {
+                    completed ?
+                        <Container className="text-center mb-3">
+                            <Button variant="danger" onClick={async () => {
+                                await clearcompletedtask()
+                                message.success("Clear Completed Task")
+                                getdata('all')
+                            }} >Clear Completed Task</Button>
+                        </Container> : null
+                }
             </Container>
 
         </Layout>

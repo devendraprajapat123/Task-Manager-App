@@ -41,3 +41,9 @@ export function updatedata(data, id) {
     return axios.put(`${DB_URL}/task/${id}`, data, id)
 
 }
+
+//clear completed task
+
+export function clearcompletedtask() {
+    return axios.delete(`${DB_URL}/iscompleted/delete`)
+}
