@@ -56,7 +56,7 @@
 }
 
 .pnf-btn:hover {
-  background-color: gray;
+  background-color: rgb(217, 180, 180);
 }
 
 
@@ -89,7 +89,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 20px;
   background-color: #fff;
-  background: gray;
+  background: rgb(140, 169, 228);
 }
 
 .form-container form .title {
@@ -121,11 +121,11 @@
 
 
 .color {
-  background:gray;
+  background:rgb(145, 148, 239);
 }
 
 .form-container1 {
-  background: gray;
+  background: rgb(211, 150, 150);
   margin-top: -15.8px;
   min-height: 70vh;
 }
