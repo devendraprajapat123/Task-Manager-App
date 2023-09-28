@@ -1,6 +1,6 @@
 import axios from 'axios'
 // const DB_URL = 'http://localhost:8888'
-const DB_URL = 'https://task-manager-h9qy.onrender.com' 
+const DB_URL = 'https://task-manager-h9qy.onrender.com'
 
 
 export function tasksave(data) {
@@ -46,4 +46,19 @@ export function updatedata(data, id) {
 
 export function clearcompletedtask() {
     return axios.delete(`${DB_URL}/iscompleted/delete`)
+}
+
+
+// register
+
+export function Register(data) {
+    return axios.post(`${DB_URL}/register`, data)
+
+}
+
+// login
+
+export function Login(data) {
+    return axios.post(`${DB_URL}/login`, data)
+
 }

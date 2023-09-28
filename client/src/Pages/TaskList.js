@@ -120,7 +120,7 @@ export function TaskList() {
                                                 </Card>
                                             </Col>
                                         )
-                                    }) : <Spin tip="Loading" size="large"> </Spin>
+                                    }) : <Spin tip="Loading Please Check Internet Connection" size="large"> </Spin>
 
                     }
                 </Row>
