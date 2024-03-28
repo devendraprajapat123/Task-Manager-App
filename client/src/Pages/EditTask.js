@@ -28,7 +28,7 @@ export function EditTask() {
     const handlesubmit = async (e) => {
         try {
             e.preventDefault();
-            await updatedata( form,id)
+            await updatedata(form, id)
             message.success("Task-Edit successfully")
             navigate('/tasklist')
         } catch (error) {

@@ -86,8 +86,6 @@ export function TaskList() {
                                                         {
                                                             t.isCompleted ? (<>
 
-
-
                                                                 <Link to={`/edittask/${t._id}`}><Button variant="primary" >Edit</Button></Link>
 
                                                                 <Button variant="danger" style={{ marginLeft: "9px" }} onClick={async () => {
